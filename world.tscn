@@ -1,3 +1,52 @@
-[gd_scene format=3 uid="uid://cvbgjctewnmfe"]
+[gd_scene load_steps=6 format=3 uid="uid://cvbgjctewnmfe"]
+
+[ext_resource type="Texture2D" uid="uid://b40ykwmg7qc6g" path="res://assets/background.png" id="1_27mh4"]
+[ext_resource type="PackedScene" uid="uid://blfd45fyckem" path="res://balloon.tscn" id="2_tdnp1"]
+[ext_resource type="PackedScene" uid="uid://c2gha8daccknp" path="res://saw_blade.tscn" id="3_v2tvd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4ga7t"]
+size = Vector2(47, 180)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iooul"]
+size = Vector2(317, 53)
 
 [node name="World" type="Node2D"]
+
+[node name="Background" type="Sprite2D" parent="."]
+texture = ExtResource("1_27mh4")
+centered = false
+metadata/_edit_lock_ = true
+
+[node name="Walls" type="StaticBody2D" parent="."]
+visible = false
+collision_mask = 0
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls"]
+position = Vector2(23.5, 90)
+shape = SubResource("RectangleShape2D_4ga7t")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Walls"]
+position = Vector2(297, 90)
+shape = SubResource("RectangleShape2D_4ga7t")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Walls"]
+position = Vector2(161.5, 206.5)
+shape = SubResource("RectangleShape2D_iooul")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Walls"]
+position = Vector2(158, -25)
+shape = SubResource("RectangleShape2D_iooul")
+
+[node name="Balloon" parent="." instance=ExtResource("2_tdnp1")]
+position = Vector2(148, 52)
+
+[node name="SawBlade2" parent="." instance=ExtResource("3_v2tvd")]
+position = Vector2(233, 160)
+
+[node name="SawBlade3" parent="." instance=ExtResource("3_v2tvd")]
+position = Vector2(245, 81)
+
+[node name="SawBlade4" parent="." instance=ExtResource("3_v2tvd")]
+position = Vector2(78, 73)
