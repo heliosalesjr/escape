@@ -1,8 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://cvbgjctewnmfe"]
+[gd_scene load_steps=9 format=3 uid="uid://cvbgjctewnmfe"]
 
 [ext_resource type="Texture2D" uid="uid://b40ykwmg7qc6g" path="res://assets/background.png" id="1_27mh4"]
+[ext_resource type="Script" path="res://world.gd" id="1_i24g3"]
 [ext_resource type="PackedScene" uid="uid://blfd45fyckem" path="res://balloon.tscn" id="2_tdnp1"]
-[ext_resource type="PackedScene" uid="uid://c2gha8daccknp" path="res://saw_blade.tscn" id="3_v2tvd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4ga7t"]
 size = Vector2(47, 180)
@@ -10,7 +10,33 @@ size = Vector2(47, 180)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iooul"]
 size = Vector2(317, 53)
 
+[sub_resource type="Theme" id="Theme_7liui"]
+
+[sub_resource type="FontFile" id="FontFile_6wbww"]
+face_index = null
+embolden = null
+transform = null
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/16/0/kerning_overrides/8/0 = Vector2(0, 0)
+cache/0/8/0/ascent = 0.0
+cache/0/8/0/descent = 0.0
+cache/0/8/0/underline_position = 0.0
+cache/0/8/0/underline_thickness = 0.0
+cache/0/8/0/scale = 1.0
+cache/0/8/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/8/0/kerning_overrides/8/0 = Vector2(0, 0)
+
+[sub_resource type="LabelSettings" id="LabelSettings_0diou"]
+line_spacing = 0.0
+font_size = 8
+
 [node name="World" type="Node2D"]
+script = ExtResource("1_i24g3")
 
 [node name="Background" type="Sprite2D" parent="."]
 texture = ExtResource("1_27mh4")
@@ -40,13 +66,27 @@ position = Vector2(158, -25)
 shape = SubResource("RectangleShape2D_iooul")
 
 [node name="Balloon" parent="." instance=ExtResource("2_tdnp1")]
-position = Vector2(148, 52)
+position = Vector2(77, 45)
 
-[node name="SawBlade2" parent="." instance=ExtResource("3_v2tvd")]
-position = Vector2(233, 160)
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
 
-[node name="SawBlade3" parent="." instance=ExtResource("3_v2tvd")]
-position = Vector2(245, 81)
+[node name="SpawnZone" type="ColorRect" parent="."]
+offset_left = 61.0
+offset_top = 20.0
+offset_right = 254.0
+offset_bottom = 167.0
+color = Color(1, 1, 1, 0.0745098)
 
-[node name="SawBlade4" parent="." instance=ExtResource("3_v2tvd")]
-position = Vector2(78, 73)
+[node name="SawCountLabel" type="Label" parent="."]
+offset_top = 9.0
+offset_right = 46.0
+offset_bottom = 61.0
+theme = SubResource("Theme_7liui")
+theme_override_fonts/font = SubResource("FontFile_6wbww")
+theme_override_font_sizes/font_size = 0
+text = "Blades
+0"
+label_settings = SubResource("LabelSettings_0diou")
+horizontal_alignment = 1
